@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- ── Title bar ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="STROBE"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:letterSpacing="0.25" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CONTROLLER"
+                android:textColor="@color/accent_cyan"
+                android:textSize="11sp"
+                android:letterSpacing="0.3"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- ── Frequency hero card ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/card_bg"
+            android:padding="24dp"
+            android:layout_marginBottom="12dp">
+
+            <!-- Big number -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="bottom">
+
+                <TextView
+                    android:id="@+id/tvFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textColor="@color/white"
+                    android:textSize="80sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"
+                    android:includeFontPadding="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" FPS"
+                    android:textColor="@color/accent_cyan"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPeriod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Period  100.000 ms"
+                android:textColor="@color/text_dim"
+                android:textSize="13sp"
+                android:fontFamily="monospace"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- ── Waveform visualizer ── -->
+        <com.strobelight.StrobeView
+            android:id="@+id/strobeView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/card_bg" />
+
+        <!-- ── ON/OFF + Status + Screen Mode ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/card_bg"
+            android:padding="18dp"
+            android:layout_marginBottom="12dp">
+
+            <Switch
+                android:id="@+id/switchStrobe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumbTint="@drawable/switch_thumb_tint"
+                android:trackTint="@drawable/switch_track_tint"
+                android:layout_marginEnd="12dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TORCH STROBE"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="○ STANDBY"
+                    android:textColor="@color/text_dim"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnScreenMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SCREEN\nMODE"
+                android:textColor="@color/bg_dark"
+                android:backgroundTint="@color/accent_cyan"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="8dp" />
+        </LinearLayout>
+
+        <!-- ── Frequency seekbar ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="18dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="FREQUENCY"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.15" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LOG SCALE  1 – 20,000 FPS"
+                    android:textColor="@color/text_dim"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progressTint="@color/accent_cyan"
+                android:thumbTint="@color/accent_cyan"
+                android:progressBackgroundTint="@color/surface" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="1"
+                    android:textColor="@color/text_dim" android:textSize="10sp"
+                    android:gravity="start" android:fontFamily="monospace" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="10"
+                    android:textColor="@color/text_dim" android:textSize="10sp"
+                    android:gravity="center" android:fontFamily="monospace" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="100"
+                    android:textColor="@color/text_dim" android:textSize="10sp"
+                    android:gravity="center" android:fontFamily="monospace" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="1k"
+                    android:textColor="@color/text_dim" android:textSize="10sp"
+                    android:gravity="center" android:fontFamily="monospace" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="20k"
+                    android:textColor="@color/text_dim" android:textSize="10sp"
+                    android:gravity="end" android:fontFamily="monospace" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ── Duty cycle seekbar ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="18dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="DUTY CYCLE"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.15" />
+                <TextView
+                    android:id="@+id/tvDutyPct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50%"
+                    android:textColor="@color/accent_cyan"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/seekDuty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progressTint="@color/accent_cyan"
+                android:thumbTint="@color/accent_cyan"
+                android:progressBackgroundTint="@color/surface" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="5% (short flash)"
+                    android:textColor="@color/text_dim" android:textSize="10sp" android:gravity="start" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="95% (long on)"
+                    android:textColor="@color/text_dim" android:textSize="10sp" android:gravity="end" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ── Exact FPS input ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="18dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXACT FREQUENCY"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.15"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etExactFps"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="e.g. 7.5"
+                    android:hintTextColor="@color/text_dim"
+                    android:textColor="@color/white"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/input_bg"
+                    android:padding="12dp"
+                    android:fontFamily="monospace"
+                    android:textSize="18sp"
+                    android:layout_marginEnd="10dp" />
+
+                <Button
+                    android:id="@+id/btnSet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SET"
+                    android:textColor="@color/bg_dark"
+                    android:backgroundTint="@color/accent_cyan"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:paddingHorizontal="22dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ── Presets ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_bg"
+            android:padding="18dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PRESETS (FPS)"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.15"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button android:id="@+id/btnPreset1"   style="@style/PresetButton" android:text="1" />
+                <Button android:id="@+id/btnPreset10"  style="@style/PresetButton" android:text="10" />
+                <Button android:id="@+id/btnPreset60"  style="@style/PresetButton" android:text="60" />
+                <Button android:id="@+id/btnPreset120" style="@style/PresetButton" android:text="120" />
+                <Button android:id="@+id/btnPreset1k"  style="@style/PresetButton" android:text="1k" />
+                <Button android:id="@+id/btnPreset20k" style="@style/PresetButton" android:text="20k" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ── Warning ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⚠  Strobe effects may trigger photosensitive seizures. Use responsibly.\nTorch hardware typically limits to ~60–300 Hz. Use Screen Mode for higher frequencies."
+            android:textColor="@color/text_dim"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginBottom="12dp" />
+
+    </LinearLayout>
+</ScrollView>
